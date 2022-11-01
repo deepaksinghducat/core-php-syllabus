@@ -10,9 +10,11 @@
  * $sql = "SELECT id, firstname, lastname FROM MyGuests";
  * $conn->prepare($sql); returns true or false 
  * 
+ * $stmt->execute()
+ * 
  * if true
- * $result->num_rows for no of rows
- * $row = $result->fetch_assoc() to get all the data by rows
+ * $result = $stmt->fetchAll(PDO::FETCH_ASSOC)
+ * 
  * 
  * 
  */
