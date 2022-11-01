@@ -6,34 +6,54 @@
  * 
  * Object-oriented
  * 
- * creates a new database
- *
- * $sql = "INSERT INTO MyGuests (firstname, lastname, email)
- * VALUES ('John', 'Doe', 'john@example.com');";
- * $sql .= "INSERT INTO MyGuests (firstname, lastname, email)
- * VALUES ('Mary', 'Moe', 'mary@example.com');";
- * $sql .= "INSERT INTO MyGuests (firstname, lastname, email)
- * VALUES ('Julie', 'Dooley', 'julie@example.com')";
+ * creates a statement
+ * $stmt = $mysqli->prepare("SELECT District FROM City WHERE Name=?");
  * 
- * $conn->multi_query($sql) returns true or false 
+ * bind parameters
+ * $stmt->bind_param("s", $city);
+ * The argument may be one of four types:
+ * i - integer
+ * d - double
+ * s - string
+ * b - BLOB
  * 
- * if false
- * $conn->error
+ * execute statement
+ * $stmt->execute();
+ * 
+ * bind result
+ * $result = $stmt->get_result();
+ * 
+ * fetch result
+ * $myrow = $result->fetch_assoc();
+ * 
+ * error
+ * $stat->error
+ * 
+ * close statement
+ * $stmt->close();
+ * 
  * 
  * Procedural
  * 
- * creates a new database
+ * creates a statement
+ * $stmt = mysqli_prepare($conn, "SELECT District FROM City WHERE Name=?");
  * 
- * $sql = "INSERT INTO MyGuests (firstname, lastname, email)
- * VALUES ('John', 'Doe', 'john@example.com');";
- * $sql .= "INSERT INTO MyGuests (firstname, lastname, email)
- * VALUES ('Mary', 'Moe', 'mary@example.com');";
- * $sql .= "INSERT INTO MyGuests (firstname, lastname, email)
- * VALUES ('Julie', 'Dooley', 'julie@example.com')";
+ * bind statement
+ * mysqli_stmt_bind_param($stmt, "s", $city);
  * 
- * mysqli_multi_query($conn, $sql) returns true or false
+ * execute statement
+ * mysqli_stmt_execute($stmt);
+ * 
+ * bind result
+ * $result = mysqli_stmt_get_result($stmt);
+ * 
+ * get result
+ * $data = mysqli_fetch_assoc($result)
  * 
  * if false
- * mysqli_error($conn)
+ * mysqli_stmt_errno($stmt)
+ * 
+ * close statement
+ * mysqli_stmt_close($stmt);
  * 
  */
